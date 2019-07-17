@@ -19,6 +19,7 @@ import { CursoComplementarPage } from '../pages/curso-complementar/curso-complem
 import { AulasCursoComplementarPage } from '../pages/aulas-curso-complementar/aulas-curso-complementar';
 import { IncluirAulaCursoComplementarPage } from '../pages/incluir-aula-curso-complementar/incluir-aula-curso-complementar';
 import { InserirUsuarioPage } from '../pages/inserir-usuario/inserir-usuario';
+import { ServiceProvider } from '../providers/service/service';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { InserirUsuarioPage } from '../pages/inserir-usuario/inserir-usuario';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    ServiceProvider
   ]
 })
 export class AppModule { }

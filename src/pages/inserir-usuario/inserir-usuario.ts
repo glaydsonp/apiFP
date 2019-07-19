@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { ModalController , NavController, NavParams, LoadingController, AlertController, ToastController, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, IonicPage, App } from 'ionic-angular';
 import * as firebase from 'firebase';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/take';
+import { ServiceProvider } from "../../providers/service/service";
+import { HttpModule } from "@angular/http";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
+
 /**
  * Generated class for the InserirUsuarioPage page.
  *
@@ -17,8 +20,25 @@ import 'rxjs/add/operator/take';
 })
 export class InserirUsuarioPage {
 
+  usuarios: any = [];
   user: any = {};
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public loadingCtrl: LoadingController,
+    public servidor: ServiceProvider,
+    public http: HttpModule,
+    public appCtrl: App,
+    public httpClient: HttpClientModule) {
+      this.getDados();
+  }
+
+  getDados(){
+    this.servidor.getData().subscribe(
+      data => this.usuarios = data,
+      err => console.log(err)
+    );
   }
   chooseFile() { document.getElementById('imgUser').click(); }
   upload() {
@@ -50,7 +70,6 @@ export class InserirUsuarioPage {
             email: this.user.email,
             password: this.user.senha,
             nome: this.user.nome,
-            professor_ou_aluno: this.user.professor_ou_aluno,
             tipo_de_usuario: this.user.tipo_de_usuario,
             qual_papel: 'usuarios'
           });
@@ -60,7 +79,6 @@ export class InserirUsuarioPage {
             email: this.user.email,
             password: this.user.senha,
             nome: this.user.nome,
-            professor_ou_aluno: this.user.professor_ou_aluno,
             tipo_de_usuario: this.user.tipo_de_usuario,
             qual_papel: 'usuarios'
           }).then(() => {
@@ -75,5 +93,13 @@ export class InserirUsuarioPage {
         reject(err);
       })
     })
+  }
+
+  registrarFirebase(usuario: any = []){
+    let body = {
+      id_cliente: usuario.id_cliente
+    };
+    
+    this.servidor.updateData(body);
   }
 }

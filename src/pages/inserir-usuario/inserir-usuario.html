@@ -28,15 +28,38 @@
       <ion-input type="text" [(ngModel)]="user.nome"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label stacked>Professor(1) ou aluno(0)</ion-label>
-      <ion-input type="text" [(ngModel)]="user.professor_ou_aluno"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Qual tipo de usuário: Premium ou Free</ion-label>
+      <ion-label stacked>Professor(1) ou aluno free(0) ou aluno premium(2)</ion-label>
       <ion-input type="text" [(ngModel)]="user.tipo_de_usuario"></ion-input>
     </ion-item>
     <ion-item>
       <button ion-button block (click)="registro()">Salvar</button>
     </ion-item>
   </ion-list>
+
+  
+  <ion-list>
+    <table>
+      <thead>
+        <td>Imagem</td>
+        <td>ID</td>
+        <td>Email</td>
+        <td>Senha</td>
+        <td>Nome</td>
+        <td>Nivel</td>
+        <td>Mandar pro Firebase</td>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios" >
+          <td>{{ usuario.caminho }}</td>
+          <td>{{ usuario.id_cliente }}</td>
+          <td>{{ usuario.email }}</td>
+          <td>{{ usuario.senha }}</td>
+          <td>{{ usuario.nome }} {{ usuario.sobrenome }}</td>
+          <td>{{ usuario.nivel }}</td>
+          <td><button ion-button (click)="registrarFirebase(usuario)" >Firebase</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </ion-list>
+
 </ion-content>

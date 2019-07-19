@@ -1,14 +1,14 @@
 webpackJsonp([9],{
 
-/***/ 461:
+/***/ 583:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InserirUsuarioPageModule", function() { return InserirUsuarioPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AulasPageModule", function() { return AulasPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inserir_usuario__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__aulas__ = __webpack_require__(171);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var InserirUsuarioPageModule = (function () {
-    function InserirUsuarioPageModule() {
+var AulasPageModule = (function () {
+    function AulasPageModule() {
     }
-    InserirUsuarioPageModule = __decorate([
+    AulasPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__inserir_usuario__["a" /* InserirUsuarioPage */],
+                __WEBPACK_IMPORTED_MODULE_2__aulas__["a" /* AulasPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__inserir_usuario__["a" /* InserirUsuarioPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__aulas__["a" /* AulasPage */]),
             ],
         })
-    ], InserirUsuarioPageModule);
-    return InserirUsuarioPageModule;
+    ], AulasPageModule);
+    return AulasPageModule;
 }());
 
-//# sourceMappingURL=inserir-usuario.module.js.map
+//# sourceMappingURL=aulas.module.js.map
 
 /***/ })
 

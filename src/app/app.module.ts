@@ -20,6 +20,9 @@ import { AulasCursoComplementarPage } from '../pages/aulas-curso-complementar/au
 import { IncluirAulaCursoComplementarPage } from '../pages/incluir-aula-curso-complementar/incluir-aula-curso-complementar';
 import { InserirUsuarioPage } from '../pages/inserir-usuario/inserir-usuario';
 import { ServiceProvider } from '../providers/service/service';
+import { HttpModule } from "@angular/http";
+import { HttpClientModule } from "@angular/common/http";
+// import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -39,6 +42,8 @@ import { ServiceProvider } from '../providers/service/service';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

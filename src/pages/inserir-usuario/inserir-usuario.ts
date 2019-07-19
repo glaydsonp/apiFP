@@ -96,10 +96,47 @@ export class InserirUsuarioPage {
   }
 
   registrarFirebase(usuario: any = []){
+    var str = usuario.caminho;
+    let re = /\.\./gi;
+    let result = str.replace(re, "https://www.fpeduc.com.br");
     let body = {
       id_cliente: usuario.id_cliente
     };
-    
     this.servidor.updateData(body);
+    return new Promise<any>((resolve, reject) => {
+      firebase.auth().createUserWithEmailAndPassword(usuario.email, usuario.senha).then(() => {
+        firebase.auth().currentUser.updateProfile({
+          displayName: usuario.email,
+          photoURL: 'https://firebasestorage.googleapis.com/v0/b/myapp-4eadd.appspot.com/o/chatterplace.png?alt=media&token=e51fa887-bfc6-48ff-87c6-e2c61976534e'
+        }).then(() => {
+          firebase.database().ref('usuarios/'+firebase.auth().currentUser.uid).set({
+            uid: firebase.auth().currentUser.uid,
+            url: result,
+            email: usuario.email,
+            password: usuario.senha,
+            nome: usuario.nome,
+            tipo_de_usuario: usuario.nivel,
+            qual_papel: 'usuarios'
+          });
+          firebase.database().ref('tudo_para_search/' + firebase.auth().currentUser.uid).set({
+            uid: firebase.auth().currentUser.uid,
+            url: result,
+            email: usuario.email,
+            password: usuario.senha,
+            nome: usuario.nome,
+            tipo_de_usuario: usuario.nivel,
+            qual_papel: 'usuarios'
+          }).then(() => {
+            resolve({ success: true });
+            }).catch((err) => {
+              reject(err);
+          })
+          }).catch((err) => {
+            reject(err);
+        })
+      }).catch((err) => {
+        reject(err);
+      })
+    })
   }
 }

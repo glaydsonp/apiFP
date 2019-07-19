@@ -4,7 +4,7 @@ header('Content-Type: text/html; charset=utf-8');
 include_once "conexao.php";
 try {
 
-	$sql = $conexao->prepare('SELECT * FROM `test`.`clientes` WHERE `clientes`.`inserido` = 0 ORDER BY `id_cliente` LIMIT 3 ');
+	$sql = $conexao->prepare('SELECT * FROM `test`.`clientes` WHERE `clientes`.`inserido` = 0 ORDER BY `id_cliente` LIMIT 10 ');
 
 	$sql->execute();
 

@@ -12,7 +12,7 @@ echo "data: ";
 var_dump($data);
 // TRANSFORMA OS DADOS
 $id = $objData->id_cliente;
-print_r("id: ".$id);
+// print_r("id: ".$id);
 
 // LIMPA OS DADOS
 $id = trim($id);
@@ -21,15 +21,15 @@ $dados; // RECEBE ARRAY PARA RETORNO
 include_once "conexao.php";
 //VERIFICA SE TEM CONEXÃO
 $sql = " UPDATE `test`.`clientes` SET `clientes`.`inserido` = 1 WHERE `clientes`.`id_cliente` =" . $id;
-print_r($sql);
+// print_r($sql);
 // $sql = "UPDATE `test`.`clientes` SET `inserido` = 1 WHERE `id_cliente` = " . $id;
 
-// $query = $conexao->prepare($sql);
-// $query->execute();
-// if (!$query) {
-//     $dados = array('mensage' => "Não foi possivel editar os dados ");
-//     echo json_encode($dados);
-// } else {
-//     $dados = array('mensage' => "Os dados foram editados com sucesso.");
-//     echo json_encode($dados);
-// }
+$query = $conexao->prepare($sql);
+$query->execute();
+if (!$query) {
+    $dados = array('mensage' => "Não foi possivel editar os dados ");
+    echo json_encode($dados);
+} else {
+    $dados = array('mensage' => "Os dados foram editados com sucesso.");
+    echo json_encode($dados);
+}

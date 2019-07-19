@@ -137,6 +137,7 @@ export class InserirUsuarioPage {
       }).catch((err) => {
         reject(err);
       })
+      this.appCtrl.getRootNav().setRoot(InserirUsuarioPage);
     })
   }
 }

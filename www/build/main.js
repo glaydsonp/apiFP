@@ -1001,7 +1001,6 @@ var InserirUsuarioPage = (function () {
         this.user = {};
         this.getDados();
     }
-    InserirUsuarioPage_1 = InserirUsuarioPage;
     InserirUsuarioPage.prototype.getDados = function () {
         var _this = this;
         this.servidor.getData().subscribe(function (data) { return _this.usuarios = data; }, function (err) { return console.log(err); });
@@ -1063,53 +1062,56 @@ var InserirUsuarioPage = (function () {
         });
     };
     InserirUsuarioPage.prototype.registrarFirebase = function (usuario) {
-        var _this = this;
         if (usuario === void 0) { usuario = []; }
-        var str = usuario.caminho;
-        var re = /\.\./gi;
-        var result = str.replace(re, "https://www.fpeduc.com.br");
-        var body = {
-            id_cliente: usuario.id_cliente
-        };
+        // var str = usuario.caminho;
+        // let re = /\.\./gi;
+        // let result = str.replace(re, "https://www.fpeduc.com.br");
+        // let body = {
+        //   id_cliente: usuario.id_cliente
+        // };
+        if (usuario.senha.length < 6) {
+            usuario.senha = "@futuro";
+            console.log(usuario.senha);
+        } /*
         this.servidor.updateData(body);
-        return new Promise(function (resolve, reject) {
-            __WEBPACK_IMPORTED_MODULE_2_firebase__["auth"]().createUserWithEmailAndPassword(usuario.email, usuario.senha).then(function () {
-                __WEBPACK_IMPORTED_MODULE_2_firebase__["auth"]().currentUser.updateProfile({
-                    displayName: usuario.email,
-                    photoURL: 'https://firebasestorage.googleapis.com/v0/b/myapp-4eadd.appspot.com/o/chatterplace.png?alt=media&token=e51fa887-bfc6-48ff-87c6-e2c61976534e'
-                }).then(function () {
-                    __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('usuarios/' + __WEBPACK_IMPORTED_MODULE_2_firebase__["auth"]().currentUser.uid).set({
-                        uid: __WEBPACK_IMPORTED_MODULE_2_firebase__["auth"]().currentUser.uid,
-                        url: result,
-                        email: usuario.email,
-                        password: usuario.senha,
-                        nome: usuario.nome,
-                        tipo_de_usuario: usuario.nivel,
-                        qual_papel: 'usuarios'
-                    });
-                    __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('tudo_para_search/' + __WEBPACK_IMPORTED_MODULE_2_firebase__["auth"]().currentUser.uid).set({
-                        uid: __WEBPACK_IMPORTED_MODULE_2_firebase__["auth"]().currentUser.uid,
-                        url: result,
-                        email: usuario.email,
-                        password: usuario.senha,
-                        nome: usuario.nome,
-                        tipo_de_usuario: usuario.nivel,
-                        qual_papel: 'usuarios'
-                    }).then(function () {
-                        resolve({ success: true });
-                    }).catch(function (err) {
-                        reject(err);
-                    });
-                }).catch(function (err) {
-                    reject(err);
-                });
-            }).catch(function (err) {
+        return new Promise<any>((resolve, reject) => {
+          firebase.auth().createUserWithEmailAndPassword(usuario.email, usuario.senha).then(() => {
+            firebase.auth().currentUser.updateProfile({
+              displayName: usuario.email,
+              photoURL: 'https://firebasestorage.googleapis.com/v0/b/myapp-4eadd.appspot.com/o/chatterplace.png?alt=media&token=e51fa887-bfc6-48ff-87c6-e2c61976534e'
+            }).then(() => {
+              firebase.database().ref('usuarios/'+firebase.auth().currentUser.uid).set({
+                uid: firebase.auth().currentUser.uid,
+                url: result,
+                email: usuario.email,
+                password: usuario.senha,
+                nome: usuario.nome,
+                tipo_de_usuario: usuario.nivel,
+                qual_papel: 'usuarios'
+              });
+              firebase.database().ref('tudo_para_search/' + firebase.auth().currentUser.uid).set({
+                uid: firebase.auth().currentUser.uid,
+                url: result,
+                email: usuario.email,
+                password: usuario.senha,
+                nome: usuario.nome,
+                tipo_de_usuario: usuario.nivel,
+                qual_papel: 'usuarios'
+              }).then(() => {
+                resolve({ success: true });
+                }).catch((err) => {
+                  reject(err);
+              })
+              }).catch((err) => {
                 reject(err);
-            });
-            _this.appCtrl.getRootNav().setRoot(InserirUsuarioPage_1);
-        });
+            })
+          }).catch((err) => {
+            reject(err);
+          })
+          this.appCtrl.getRootNav().setRoot(InserirUsuarioPage);
+        })*/
     };
-    InserirUsuarioPage = InserirUsuarioPage_1 = __decorate([
+    InserirUsuarioPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-inserir-usuario',template:/*ion-inline-start:"C:\xampp\htdocs\apiFP\src\pages\inserir-usuario\inserir-usuario.html"*/'<ion-header>\n\n  <ion-navbar color="dark">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Inserir usuário</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n  <div style="text-align: center;">\n\n    <h1>Escolher imagem do usuário</h1>\n\n    <img *ngIf="user.foto" src="{{ user.foto }}" style="width:100px;height:100px;" (click)="chooseFile()">\n\n    <form ngNoForm>\n\n      <input id="imgUser" name="file" type="file" (change)="upload()">\n\n    </form>\n\n  </div>\n\n  <ion-list>\n\n    <ion-item>\n\n      <ion-label stacked>Email do usuário</ion-label>\n\n      <ion-input type="text" [(ngModel)]="user.email"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label stacked>Senha do usuário</ion-label>\n\n      <ion-input type="password" [(ngModel)]="user.senha"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label stacked>Nome do usuário</ion-label>\n\n      <ion-input type="text" [(ngModel)]="user.nome"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label stacked>Professor(1) ou aluno free(0) ou aluno premium(2)</ion-label>\n\n      <ion-input type="text" [(ngModel)]="user.tipo_de_usuario"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <button ion-button block (click)="registro()">Salvar</button>\n\n    </ion-item>\n\n  </ion-list>\n\n\n\n  \n\n  <ion-list>\n\n    <table>\n\n      <thead>\n\n        <td>Imagem</td>\n\n        <td>ID</td>\n\n        <td>Email</td>\n\n        <td>Senha</td>\n\n        <td>Nome</td>\n\n        <td>Nivel</td>\n\n        <td>Mandar pro Firebase</td>\n\n      </thead>\n\n      <tbody>\n\n        <tr *ngFor="let usuario of usuarios" >\n\n          <td>{{ usuario.caminho }}</td>\n\n          <td>{{ usuario.id_cliente }}</td>\n\n          <td>{{ usuario.email }}</td>\n\n          <td>{{ usuario.senha }}</td>\n\n          <td>{{ usuario.nome }} {{ usuario.sobrenome }}</td>\n\n          <td>{{ usuario.nivel }}</td>\n\n          <td><button ion-button (click)="registrarFirebase(usuario)" >Firebase</button></td>\n\n        </tr>\n\n      </tbody>\n\n    </table>\n\n  </ion-list>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\xampp\htdocs\apiFP\src\pages\inserir-usuario\inserir-usuario.html"*/,
         }),
@@ -1122,7 +1124,6 @@ var InserirUsuarioPage = (function () {
             __WEBPACK_IMPORTED_MODULE_6__angular_common_http__["b" /* HttpClientModule */]])
     ], InserirUsuarioPage);
     return InserirUsuarioPage;
-    var InserirUsuarioPage_1;
 }());
 
 //# sourceMappingURL=inserir-usuario.js.map

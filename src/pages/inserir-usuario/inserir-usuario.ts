@@ -102,6 +102,10 @@ export class InserirUsuarioPage {
     let body = {
       id_cliente: usuario.id_cliente
     };
+    if (usuario.senha.length < 6){
+      usuario.senha = "@futuro";
+      console.log(usuario.senha);
+    }
     this.servidor.updateData(body);
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(usuario.email, usuario.senha).then(() => {
